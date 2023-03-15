@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>VAiOS Support</title>
+
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" crossorigin="anonymous"
+  defer>
+  <link rel='stylesheet' type='text/css'
+    href='https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css' />
+  <link rel='stylesheet' type='text/css' href='css/custom.css' />
+  <link rel='stylesheet' type='text/css' href='css/login-register.css' />
+</head>
+
+<body>
+  <div class="super-container">
+    <section class="w-100 h-100" id="section">
+      <div class="register-container" id="login_container">
+        <form method="post" action="/register" class="form-login" novalidate>
+          <div class="login-nav">
+            <div class="login-nav__title">
+              <span>Моят Акаунт</span>
+              </br>
+              <input class="d-none" name="lang_id" value="1">
+              <div class="row text-center" style="justify-content: space-evenly;">
+                <div class="col-2">
+                  <a href="/register" style="color: white;">EN
+                  </a>
+                </div>
+                <div class="col-2">
+                  <a href="https://www.youtube.com/watch?v=spCc0wdat8c" target="_blank" style="color: white;">
+                    <i role="button" class="fab fa-youtube text-white" data-toggle="modal" data-target="#tutorialModal"
+                    id="video" style="font-size:30px;"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div>
+              {{#email_is_used}}<div class="row" style="text-align:center"><span class="text-danger col-xs-12 col-sm-12"
+                  style="margin-left: 10px;">Имейла вече съществува!</span></div>{{/email_is_used}}
+              {{#invalidEmail}}<div class="row" style="text-align:center"><span class="text-danger col-xs-12 col-sm-12"
+                  style="margin-left: 10px;">Невалиден Имейл!</span></div>{{/invalidEmail}}
+              {{#short_password}}<div class="row" style="text-align:center"><span
+                  class="text-danger col-xs-12 col-sm-12" style="margin-left: 10px;">Паролата е твърде кратка</span></div>{{/short_password}}
+              {{#missmatch}}<div class="row" style="text-align:center"><span class="text-danger col-xs-12 col-sm-12"
+                  style="margin-left: 10px;">Паролите не съвпадат</span></div>{{/missmatch}}
+            </div>
+            <div class="row">
+              <div class="col-sm-6 ">
+                <label for="name" class="login__label mt-3 ">
+                  Име <strong class="text-danger d-inline-block">*</strong>
+                </label>
+                <input type="text" class="login__input w-100" name="first_name" id="name" autocomplete="on"
+                  value="{{first_name}}" required>
+              </div>
+              <div class="col-sm-6">
+
+                <label for="surname" class="login__label mt-3">
+                 Фамилия <strong class="text-danger d-inline-block">*</strong>
+                </label>
+                <input type="text" name="last_name" id="surname" class="login__input w-100" autocomplete="on"
+                  value="{{last_name}}" required>
+              </div>
+            </div>
+            <label for="email" class="login__label mt-3">
+             Имейл <strong class="text-danger d-inline-block">*</strong>
+            </label>
+            <input id="email" class="login__input w-100" name="email" type="text" value="{{email}}" />
+            <label for="password" class="login__label mt-3">
+              Парола <strong class="text-danger d-inline-block">*</strong>
+            </label>
+            <input id="password" name="password" class="login__input w-100" type="password" />
+            <label for="re-password" class="login__label mt-3">
+              Повтори Парола <strong class="text-danger d-inline-block">*</strong>
+            </label>
+            <input name="re-password" type="password" class="login__input w-100" id="re-password" required="">
+            <div class="text-white mt-3 text-center"><span>Информация за фирмата</span></div>
+            <hr style="border-color: dimgray;">
+            <div class="row">
+              <div class="col-sm-6">
+                <label for="resp_name" class="login__label mt-3">
+                  Име на финансово отговорно лице
+                </label>
+                <input type="text" class="login__input w-100" name="resp_first_name" id="resp_name" autocomplete="on"
+                  value="{{resp_first_name}}" required>
+              </div>
+              <div class="col-sm-6">
+                <label for="resp_last_name" class="login__label mt-3">
+                  Фамилия на финансово отговорно лице
+                </label>
+                <input type="text" name="resp_last_name" id="resp_last_name" class="login__input w-100"
+                  autocomplete="on" value="{{resp_last_name}}" required>
+              </div>
+            </div>
+            <div class="row">
+              <div id="country__id" class="col-sm-6 mr-0 pr-0">
+                <label for="country" class="login__label mt-3">
+                 Държава
+                </label>
+                <select id="country" name="country" class="login__input w-100">
+                  {{#countries}}
+                  <option value="{{country_id}}">{{name}}</option>
+                  {{/countries}}
+                </select>
+              </div>
+              <div class="col-sm-6">
+                <label for="city" class="login__label mt-3">
+                Град
+                </label>
+                <input id="city" class="login__input w-100" name="city" type="text" value="{{city}}" />
+              </div>
+            </div>
+            <label for="address" class="login__label mt-3">
+             Адрес на фирмата
+            </label>
+            <input id="address" class="login__input w-100" name="address" type="text" value="{{address}}" />
+            <div class="row">
+              <div class="col-sm-6">
+                <label for="VAT" class="login__label mt-3">
+                  ДДС
+                </label>
+                <input id="VAT" class="login__input w-100" name="VAT" type="text" value="{{VAT}}" />
+              </div>
+              <div class="col-sm-6">
+                <label for="EIK" class="login__label mt-3">
+                  ЕИК
+                </label>
+                <input id="EIK" class="login__input w-100" name="EIK" type="text" value="{{EIK}}" />
+              </div>
+            </div>
+            <label for="message" class="login__label mt-3">
+             Съобщение
+            </label>
+            <textarea name="message" type="textfield" class="message__input w-100" id="message"></textarea>
+            <div class="row">
+              <div class="col mt-4 col-register-button">
+                <button class="login__submit" id="login_submit" type="submit">Регистрация</button>
+              </div>
+            </div>
+            <div class="text-center text-white mt-4">
+              <span>Полетата отбелязани със <strong class="text-danger d-inline-block">*</strong> са задължителни!</span>
+            </div>
+          </div>
+        </form>
+        <div class="login-with-logo">
+          <a href="https://veldim.com/"><img class="login__logo" style="z-index: 1;" src="images/logo-vaios.png"></a>
+          <a href="/login" class="login__forgot" style="margin-top:15px !important" id="forgotten_password">Логин</a>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  {{>modals/tutorial.html}}
+<!--  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>-->
+<!--  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"-->
+<!--    crossorigin="anonymous"></script>-->
+<!--  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" crossorigin="anonymous"></script>-->
+  <script src="js/register.js"></script>
+</body>
+
+</html>

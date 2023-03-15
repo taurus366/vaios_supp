@@ -1,0 +1,111 @@
+/* HEADER ----------------------------------------------------------------------------------------------- START */
+.vaios-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(260deg, #1b2a47 0%, #203152 25%, #24385e 50%, #24385e 75%, #3f5172 100%);
+  height: 70px;
+  z-index: 1;
+  position: relative;
+}
+.vaios-header article.logo {
+  width: 240px;
+}
+.vaios-header article.logo img {
+  width: 100%;
+}
+.vaios-header article.avatar {
+  width: 60px;
+}
+.vaios-header article.avatar img {
+  width: 100%;
+  border-radius: 30px;
+}
+.vaios-header article.avatar img:hover {
+  cursor: pointer;
+}
+.vaios-header article.open-menu-btn,
+.vaios-header article.avatar {
+  margin: 0 20px;
+}
+
+/* HEADER ----------------------------------------------------------------------------------------------- STOP */
+/* SIDE BAR --------------------------------------------------------------------------------------------- START*/
+div.index-container section.btns-open-close {
+  position: fixed;
+  z-index: 2;
+  top: 17px;
+}
+div.index-container section.open-menu-btn {
+  position: fixed;
+  left: 20px;
+}
+div.index-container section.open-menu-btn article a:hover {
+  cursor: pointer;
+  color: white;
+  transition: 0.5s;
+}
+div.index-container section.open-menu-btn article a {
+  font-size: 30px;
+  color: black;
+}
+div.index-container section.close-menu-btn {
+  display: none;
+}
+div.index-container section.close-menu-btn article a {
+  font-size: 30px;
+  color: black;
+}
+div.index-container section.close-menu-btn article a:hover {
+  cursor: pointer;
+  color: white;
+  transition: 0.5s;
+}
+div.index-container aside.side-bar {
+  margin-top: 69px;
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 66px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  background-color: #3f5172;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+div.index-container aside.side-bar > section {
+  margin: 30px 8px;
+}
+div.index-container aside.side-bar > section > i {
+  font-size: 40px;
+}
+div.index-container aside.side-bar > section > span {
+  display: none;
+}
+div.index-container aside.side-bar > section:first-child {
+  margin: 30px 15px;
+}
+
+/* SIDE BAR --------------------------------------------------------------------------------------------- STOP*/
+/* width */
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 100px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}/*# sourceMappingURL=index.css.map */
