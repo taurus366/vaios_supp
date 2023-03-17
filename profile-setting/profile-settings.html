@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!----======== CSS ======== -->
+    <link rel="stylesheet" href="profile-settings.css">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"crossorigin="anonymous">
+
+    <!----===== Boxicons CSS ===== -->
+    <!-- <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'> -->
+    <title>Document</title>
+</head>
+<body>
+    <!-- modal  fade -->
+    <div class="  modal-settings payment-modal" id="profileSettingsModal" tabindex="1" role="dialog"
+     aria-labelledby="buyCreditsTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header" style="background: #4c5f83;">
+        <div class="col-1">
+          <i class="fas fa-cog client-button-icon-color" style="font-size:25px;"></i>
+        </div>
+        <div class="">
+          <h5 class="modal-title payment-title client-modal-header" id="buyCreditsTitle">{{#intl}}Settings{{/intl}}</h5>
+        </div>
+        <div class='col-1'>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+      </div>
+      <div class="modal-body" style="border-bottom: 40px solid #4c5f83;">
+        <form id="paymentForm" class="align-items-center" onsubmit="return validateProfile()" action="/save-profile" method="POST" required>
+          {{#customer}}
+
+          <!--  Language -->
+           <!-- <span class="d-none" id="current-language">{{language_id}}</span> -->
+           <section class="curr-lang-item-other">
+            <span class=" curr-lang-item" id="current-language">Bulgarian</span>
+            <div class="form language-form" id="lang">
+              <div class="form-group">
+                <select name="profile-language" style="min-width:20%;" id="profile-language">
+                  {{#lg}}
+                  <option value="{{lang_id}}">{{lang_name}}</option>
+                  {{/lg}}
+                </select>
+              </div>
+            </div>
+           </section>
+                    
+             <!--  Language -->
+
+
+             <section class="edited-items">
+                
+                <section class="left-side-items">
+                    <article><h4>Profile</h4></article>
+                    <!-- first name -->
+                    <!-- <div class="form-row w-75"> -->
+                      <div class="col-12 form-group  text-start">
+                        <label for="f_name">{{#intl}}First Name:{{/intl}}</label>
+                        <!-- <span class="d-none text-danger d-block" id="f_name_error">{{#intl}}Please enter first name!{{/intl}}</span> -->
+                        <input id="f_name" name="f_name" class="form-control" value="{{first_name}}">
+                      </div>
+                      <div class="col-12 form-group text-start">
+                        <label for="l_name">{{#intl}}Last Name:{{/intl}}</label>
+                        <!-- <span class="d-none text-danger d-block" id="l_name_error">{{#intl}}Please enter last name!{{/intl}}</span> -->
+                        <input id="l_name" name="l_name" class="form-control" value="{{last_name}}">
+                      </div>
+                    <!-- </div> -->
+                    <!-- phone -->
+                    <!-- <div class="form-row w-75"> -->
+                      <div class="col-12 form-group text-start">
+                        <label for="phone">{{#intl}}Phone:{{/intl}}</label>
+                        <input id="phone" name="phone" class="form-control" value="{{phone}}">
+                      </div>
+                      <!-- email -->
+                      <div class="form-group col-12  text-start">
+                        <label for="mail">{{#intl}}Mail:{{/intl}}</label>
+                        <!-- <span class="d-none text-danger d-block" id="mail_error">{{#intl}}Please enter email!{{/intl}}</span> -->
+                        <input id="mail" name="email" class="form-control" value="{{mail}}">
+                      </div>
+                    <!-- </div> -->
+                            </section>
+
+                            <div class="line-ali"></div>
+                  
+                            <section class="right-side-items">
+                                <article><h4>Company</h4></article>
+                    <!-- company name -->
+                    <div class="form ">
+                      <div class="form-group col-6 text-start">
+                        <label for="company">{{#intl}}Company name:{{/intl}}</label>
+                        <input id="company" name="company" class="form-control" value="{{invoice_company}}">
+                      </div>
+                    </div>
+                     <!-- accountable person first name -->
+                     <div
+                     class="form-group col-12 col-sm-6 text-start d-flex flex-column justify-content-between">
+                  <label for="p_f_name">{{#intl}}Accountable person first name:{{/intl}}</label>
+                  <input id="p_f_name" class="form-control" name="resp_first_name" value="{{resp_first}}">
+                  </div>
+                  <!-- accountable person last name -->
+                  <div class="form-group col-12 col-sm-6 text-start">
+                  <label for="p_l_name">{{#intl}}Accountable person surname:{{/intl}}</label>
+                  <input id="p_l_name" class="form-control" name="resp_last_name" value="{{resp_last}}">
+                  </div>
+                          <!-- vat -->
+                          <div class="form-group col-12 col-sm-6 text-start">
+                              <label for="vat">{{#intl}}VAT:{{/intl}}</label>
+                              <input id="vat" name="vat" class="form-control" value="{{invoice_uid_vat}}">
+                            </div>
+                            <!-- eik -->
+                            <div class="form-group col-12 col-sm-6 text-start">
+                              <label for="eik">{{#intl}}EIK:{{/intl}}</label>
+                              <input id="eik" name="eik" class="form-control" value="{{invoice_uid}}">
+                            </div>
+                  
+                            </section>
+             </section>
+
+        
+
+
+
+
+
+
+
+          <div class="form  btn-save-ali">
+            <button type="submit" class="button-18">{{#intl}}Save{{/intl}}</button>
+          </div>
+          {{/customer}}
+        </form>
+        <div class=" btn-change-paswd-ali ">
+          <button data-toggle="modal" data-target="#changePasswordModal" class="button-18">{{#intl}}Change Password{{/intl}}</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.3/js/bootstrap.min.js" integrity="sha512-1/RvZTcCDEUjY/CypiMz+iqqtaoQfAITmNSJY17Myp4Ms5mdxPS5UV7iOfdZoxcGhzFbOm6sntTKJppjvuhg4g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
+</body>
+</html>
