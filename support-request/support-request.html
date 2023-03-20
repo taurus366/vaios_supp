@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"crossorigin="anonymous">
+        <link rel="stylesheet" href="support-request.css"> -->
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" crossorigin="anonymous"
+        defer>
+        <link rel='stylesheet' type='text/css'
+          href='https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css' />
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+          <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"crossorigin="anonymous">
+          <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/css/splide.min.css">      
+
+    </head>
+<body>
+    <div class="  modal-settings payment-modal" id="supportModalRequest" tabindex="-1" role="dialog"
+    aria-labelledby="buyCreditsTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header backcolor-ali">
+                <div class="col-1">
+                    <img src="../images/support.svg" style="width: 38px;" class="client-button-image-color" />
+                </div>
+                <div class="">
+                    <h5 class="mb-0 client-modal-header">{{#intl}}Support{{/intl}}</h5>
+                </div>
+                <div class="col-1">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            </div>
+            <div class="modal-body" style="max-height: 85vh;">
+                <div id="support-message">
+                    <div class="row">
+                        <div class="col-12 text-center m-auto mt-2">
+                            <label for="support-message-title" class="d-block">{{#intl}}Title{{/intl}}</label>
+                            <input id="support-message-title" class="w-50"></input>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 text-center m-auto mt-2">
+                            <label for="support-message-description"
+                                class="d-block">{{#intl}}Description{{/intl}}</label>
+                            <span class="d-block text-center text-danger d-none"
+                                id='support-message-messageError'>{{#intl}}Please write a description{{/intl}}</span>
+                            <textarea id="support-message-description" rows=5 class="w-100"></textarea>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <span class="d-block text-success text-center d-none" id='support-message-ok'>{{#intl}}Support
+                            message sent!{{/intl}}</span>
+                        <div class="col-sm-12 justify-content-center d-flex">
+                            <button type="submit" class="btn button-18 form-message-submit"
+                                id="support-request-submit"><span class="pr-5 pl-5 m-0">{{#intl}}Send{{/intl}}</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $('#support-request-submit').on('click',function(){
+        var data = {
+            'title': $('#support-message-title').val(),
+            'description': $('#support-message-description').val()
+        }
+        sendWS('/support-request-submit', data, function (data) {
+            if(data == 'messageError'){
+                $('#support-message-messageError').removeClass('d-none')
+            }
+            else if (data == 'OK'){
+                $('#support-message-ok').removeClass('d-none')
+            }
+        })
+    })
+</script>
+</body>
+</html>
+
